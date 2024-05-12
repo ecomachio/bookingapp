@@ -1,10 +1,11 @@
 import { TFilterOptions } from "./types";
-
-export const BASE_URL = "/seed.json";
+export const BASE_URL = import.meta.env.BASE_URL;
+export const SEED_FILE_URL = `${BASE_URL}seed.json`;
 export const PROPERTIES_URL = `${BASE_URL}/properties`;
 export const BOOKINGS_URL = `${BASE_URL}/bookings`;
 
-export const DEFAULT_ERROR_MESSAGE = "Something went wrong. Please try again later.";
+export const DEFAULT_ERROR_MESSAGE =
+  "Something went wrong. Please try again later.";
 
 export const FILTER_OPTIONS = {
   all: "all" as TFilterOptions,

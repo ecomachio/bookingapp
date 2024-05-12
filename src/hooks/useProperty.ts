@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { TProperty, TPropertyListResponse } from "../types";
 import { API } from "../services/api";
-import { BASE_URL } from "../constants";
+import { SEED_FILE_URL } from "../constants";
 import { AppContext } from "../context/AppContext";
 
 const useProperty = (id: number) => {
@@ -15,7 +15,7 @@ const useProperty = (id: number) => {
     } else {
       const fetchProperty = async () => {
         try {
-          const response = await API.get<TPropertyListResponse>(BASE_URL);
+          const response = await API.get<TPropertyListResponse>(SEED_FILE_URL);
           const property = response.properties.find(
             (property) => property.id === id
           );

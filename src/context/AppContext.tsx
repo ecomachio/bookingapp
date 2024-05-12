@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { TBooking, TProperty, TPropertyListResponse } from "../types";
 import { API } from "../services/api";
-import { BASE_URL } from "../constants";
+import { SEED_FILE_URL } from "../constants";
 
 interface AppState {
   properties: TProperty[];
@@ -42,7 +42,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const fetchProperties = async () => {
       try {
         setIsLoading(true);
-        const response = await API.get<TPropertyListResponse>(BASE_URL);
+        const response = await API.get<TPropertyListResponse>(SEED_FILE_URL);
         console.log("response", response);
         setProperties(response.properties);
       } catch (error) {
