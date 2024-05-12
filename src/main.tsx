@@ -11,39 +11,44 @@ import { Home } from "./pages/home/index.ts";
 import Confirmation from "./pages/confirmantion/Confirmation.tsx";
 import Bookings from "./pages/bookings/Bookings.tsx";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      errorElement: <Error />,
+      children: [
+        {
+          index: true,
+          element: <Home />,
+        },
+        {
+          path: "property/:id",
+          element: <Property />,
+        },
+        {
+          path: "property/:propertyId/confirmation/:bookingId",
+          element: <Confirmation />,
+        },
+        {
+          path: "bookings",
+          element: <Bookings />,
+        },
+        {
+          path: "404",
+          element: <Error />,
+        },
+        {
+          path: "*",
+          element: <Error />,
+        },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <App />,
-    errorElement: <Error />,
-    children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: "property/:id",
-        element: <Property />,
-      },
-      {
-        path: "property/:propertyId/confirmation/:bookingId",
-        element: <Confirmation />,
-      },
-      {
-        path: "bookings",
-        element: <Bookings />,
-      },
-      {
-        path: "404",
-        element: <Error />,
-      },
-      {
-        path: "*",
-        element: <Error />,
-      },
-    ],
-  },
-]);
+    basename: import.meta.env.BASE_URL,
+  }
+);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
