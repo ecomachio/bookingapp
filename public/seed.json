@@ -1,0 +1,104 @@
+{
+  "properties": [
+    {
+      "id": 1,
+      "name": "Beach House",
+      "price": 1000,
+      "description": "A beautiful beach house",
+      "location": "Miami, FL",
+      "capacity": 10,
+      "categories": ["house"],
+      "rooms": 4,
+      "bathrooms": 3,
+      "bookedDates": [],
+      "welcomeMessage": "Welcome to the Beach House! Enjoy the sun, sand, and sea.",
+      "image": "https://a0.muscache.com/im/pictures/miso/Hosting-53371567/original/f154c3a2-8d7f-4e3d-8d64-12f3d1591f3c.jpeg?im_w=720",
+      "secondaryImages" : [
+        "https://a0.muscache.com/im/pictures/miso/Hosting-53371567/original/1af7cbf4-bfc5-4035-a6f0-91befa2c1ff7.jpeg?im_w=720",
+        "https://a0.muscache.com/im/pictures/miso/Hosting-53371567/original/4581d44b-1d93-4c20-8d97-01835c71d8b4.jpeg?im_w=720",
+        "https://a0.muscache.com/im/pictures/miso/Hosting-53371567/original/4581d44b-1d93-4c20-8d97-01835c71d8b4.jpeg?im_w=720",
+        "https://a0.muscache.com/im/pictures/miso/Hosting-53371567/original/34cd5c1d-4712-4bd6-8159-11527ed90734.jpeg?im_w=720"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Mountain Cabin",
+      "price": 500,
+      "description": "A cozy mountain cabin",
+      "location": "Asheville, NC",
+      "capacity": 6,
+      "categories": ["house", "cabin"],
+      "rooms": 2,
+      "bathrooms": 1,
+      "bookedDates": [],
+      "welcomeMessage": "Welcome to the Mountain Cabin! Enjoy the peace and quiet of the mountains.",
+      "image": "https://a0.muscache.com/im/pictures/prohost-api/Hosting-43847130/original/f8e71ccd-87b4-4b4b-ab05-a741e290e255.jpeg?im_w=720",
+      "secondaryImages": [
+        "https://a0.muscache.com/im/pictures/prohost-api/Hosting-43847130/original/20c4fc62-f7cb-4e85-b643-6f09020301bf.jpeg?im_w=720",
+        "https://a0.muscache.com/im/pictures/prohost-api/Hosting-43847130/original/86b890c0-f7f7-432f-86d0-397edc9a7b82.jpeg?im_w=720",
+        "https://a0.muscache.com/im/pictures/prohost-api/Hosting-43847130/original/ff28e188-6a9b-40ba-adbe-2955790ccc33.jpeg?im_w=720",
+        "https://a0.muscache.com/im/pictures/prohost-api/Hosting-43847130/original/557a9d54-f833-4a81-8d34-a93fe14786dd.jpeg?im_w=720"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "City Apartment",
+      "price": 2000,
+      "description": "A modern city apartment",
+      "location": "New York, NY",
+      "capacity": 4,
+      "categories": ["apartment"],
+      "rooms": 2,
+      "bathrooms": 1,
+      "bookedDates": [],
+      "welcomeMessage": "Welcome to the City Apartment! Enjoy the hustle and bustle of city life.",
+      "image": "https://a0.muscache.com/im/pictures/40a9e74d-20d4-4ca7-8bfc-b3745518fd73.jpg?im_w=720",
+      "secondaryImages": [
+        "https://a0.muscache.com/im/pictures/dce35bab-644a-42fb-8c2c-2148d79f9932.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/384c29bc-f7da-4617-8195-0ebfbd083e70.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/59abe2da-6339-41cb-a513-c7c3e88f6e67.jpg?im_w=720",
+        "https://a0.muscache.com/im/pictures/06bbf531-b3e4-4e17-bca6-2deaa28bd387.jpg?im_w=720"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Desert House",
+      "price": 2000,
+      "description": "bohemian, adobe-style home sits perched on a hill surrounded by boulders",
+      "location": "Joshua Tree, CA",
+      "capacity": 6,
+      "categories": ["house", "desert"],
+      "rooms": 3,
+      "bathrooms": 2,
+      "bookedDates": [],
+      "welcomeMessage": "Welcome to the Desert House! Enjoy the unique beauty of the desert.",
+      "image": "https://a0.muscache.com/im/pictures/9e8b3b26-efe8-47db-8a31-d25adeddb0d0.jpg?im_w=720",
+      "secondaryImages": [
+        "https://a0.muscache.com/im/pictures/miso/Hosting-772690676226521946/original/c8731d90-ae97-47b4-840d-c6fa5cac2ff7.jpeg?im_w=720",
+        "https://a0.muscache.com/im/pictures/miso/Hosting-772690676226521946/original/710558c0-5330-4ea4-a3f8-08cc81254d7e.jpeg?im_w=720",
+        "https://a0.muscache.com/im/pictures/miso/Hosting-772690676226521946/original/acd1f179-d5c1-4a7f-a35e-5adf8804dde6.jpeg?im_w=720",
+        "https://a0.muscache.com/im/pictures/miso/Hosting-772690676226521946/original/8c9c7472-c033-4055-bff6-56670708e149.jpeg?im_w=720"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Pool House",
+      "price": 2000,
+      "description": "A luxurious pool house",
+      "location": "Los Angeles, CA",
+      "capacity": 6,
+      "categories": ["house", "pool"],
+      "rooms": 3,
+      "bathrooms": 2,
+      "bookedDates": [],
+      "welcomeMessage": "Welcome to the Pool House! Enjoy the sun and the water.",
+      "image": "https://a0.muscache.com/im/pictures/miso/Hosting-771482317449548821/original/9e5f491f-b863-4ed7-8167-a2684c713362.jpeg?im_w=1200",
+      "secondaryImages": [
+        "https://a0.muscache.com/im/pictures/miso/Hosting-771482317449548821/original/09431f96-6fc8-48cc-9649-59f870075d20.jpeg?im_w=720",
+        "https://a0.muscache.com/im/pictures/miso/Hosting-771482317449548821/original/4c6c179c-84f9-41c6-b903-88d6be0103df.jpeg?im_w=720",
+        "https://a0.muscache.com/im/pictures/miso/Hosting-771482317449548821/original/63227409-959b-4671-af01-dcf423eeff02.jpeg?im_w=720",
+        "https://a0.muscache.com/im/pictures/miso/Hosting-771482317449548821/original/3eedd858-1f5f-45ab-a8a2-d7653393afcd.jpeg?im_w=720"
+      ]
+    }
+  ]
+}
