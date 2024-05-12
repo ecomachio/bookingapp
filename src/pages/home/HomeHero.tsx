@@ -20,7 +20,7 @@ const HomeHero = () => {
       <div className="flex justify-center mt-8 mb-12">
         <Link to="#listing">
           <Button color="blue" pill size="lg">
-            Explore our options Explore our options
+            Explore our options
           </Button>
         </Link>
       </div>
