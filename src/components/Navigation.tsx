@@ -1,4 +1,4 @@
-import { Navbar } from "flowbite-react";
+import { CustomFlowbiteTheme, Navbar } from "flowbite-react";
 import React, { useContext } from "react";
 import { DarkModeContext } from "../context/DarkModeContext";
 import { Link } from "react-router-dom";
@@ -43,20 +43,38 @@ const MoonIcon = () => (
   </svg>
 );
 
+const customTheme: CustomFlowbiteTheme["navbar"] = {
+  link: {
+    base: "block py-2 pl-3 pr-4 md:p-0",
+    active: {
+      on: "bg-blue-700 text-white dark:text-white md:bg-transparent md:text-blue-700",
+      off: "border-b border-gray-100  text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white",
+    },
+    disabled: {
+      on: "text-gray-400 hover:cursor-not-allowed dark:text-gray-600",
+      off: "",
+    },
+  },
+};
+
 const Navigation: React.FC = () => {
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
 
   return (
-    <Navbar fluid rounded className="dark:bg-gray-950">
-      <Navbar.Brand href="#">
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          Booking App
-        </span>
-      </Navbar.Brand>
+    <Navbar theme={customTheme} fluid rounded className="dark:bg-gray-950">
+      <Link to="/">
+        <Navbar.Brand color="blue" href="#">
+          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+            Booking App
+          </span>
+        </Navbar.Brand>
+      </Link>
       <Navbar.Toggle />
       <Navbar.Collapse>
         <Link to="/">
-          <Navbar.Link active>Home</Navbar.Link>
+          <Navbar.Link color="blue" active>
+            Home
+          </Navbar.Link>
         </Link>
         <Navbar.Link>About</Navbar.Link>
         <Navbar.Link>Services</Navbar.Link>
