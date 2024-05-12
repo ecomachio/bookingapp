@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 import Listing from "./listing/Listing";
 import { TFilterOptions } from "../../types";
@@ -16,7 +16,7 @@ const HomePage = () => {
   const [selectedFilter, setSelectedFilter] = useState<TFilterOptions>(
     FILTER_OPTIONS.all
   );
-  const listingRef = useRef<HTMLDivElement>(null);
+
   const { isLoading, properties, error } = useProperties();
   console.log("HomePage", properties);
   const filteredProperties = useFilteredProperties(properties, selectedFilter);
