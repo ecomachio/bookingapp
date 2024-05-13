@@ -8,6 +8,7 @@ import "@testing-library/jest-dom/vitest";
 describe("DeleteBookingModal", () => {
   let openModal: boolean = true;
   let setOpenModal = vi.fn();
+  let action = vi.fn();
 
   beforeEach(() => {
     openModal = false;
@@ -16,13 +17,21 @@ describe("DeleteBookingModal", () => {
 
   it("renders without crashing", () => {
     render(
-      <DeleteBookingModal openModal={openModal} setOpenModal={setOpenModal} />
+      <DeleteBookingModal
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        action={action}
+      />
     );
   });
 
   it("displays the modal title", () => {
     const { getByText } = render(
-      <DeleteBookingModal openModal={openModal} setOpenModal={setOpenModal} />
+      <DeleteBookingModal
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        action={action}
+      />
     );
     expect(
       getByText("Are you sure you want to delete this booking?")
@@ -31,7 +40,11 @@ describe("DeleteBookingModal", () => {
 
   it('closes the modal when the "Yes, I\'m sure" button is clicked', async () => {
     const { getByText } = render(
-      <DeleteBookingModal openModal={openModal} setOpenModal={setOpenModal} />
+      <DeleteBookingModal
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        action={action}
+      />
     );
     const yesButton = getByText("Yes, I'm sure");
 
@@ -41,7 +54,11 @@ describe("DeleteBookingModal", () => {
 
   it('closes the modal when the "No, cancel" button is clicked', async () => {
     const { getByText } = render(
-      <DeleteBookingModal openModal={openModal} setOpenModal={setOpenModal} />
+      <DeleteBookingModal
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        action={action}
+      />
     );
     const noButton = getByText("No, cancel");
 
