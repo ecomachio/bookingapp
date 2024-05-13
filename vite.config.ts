@@ -11,5 +11,10 @@ export default defineConfig(({ mode }) => {
         "@": "/src",
       },
     },
+    test: {
+      include: ["**/*.test.tsx"],
+      globals: true,
+      environment: "jsdom",
+    },
   };
 });

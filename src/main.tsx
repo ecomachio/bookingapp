@@ -8,8 +8,9 @@ import Error from "./pages/error/Error.tsx";
 import Property from "./pages/property/Property.tsx";
 import App from "./App.tsx";
 import { Home } from "./pages/home/index.ts";
+
+import { Booking, BookingList, Bookings } from "./pages/bookings";
 import Confirmation from "./pages/confirmantion/Confirmation.tsx";
-import Bookings from "./pages/bookings/Bookings.tsx";
 
 const router = createBrowserRouter(
   [
@@ -27,12 +28,26 @@ const router = createBrowserRouter(
           element: <Property />,
         },
         {
-          path: "property/:propertyId/confirmation/:bookingId",
-          element: <Confirmation />,
-        },
-        {
           path: "bookings",
           element: <Bookings />,
+          children: [
+            {
+              index: true,
+              element: <BookingList />,
+            },
+            {
+              path: ":propertyId/confirmation/:bookingId/",
+              element: <Confirmation />,
+            },
+            {
+              path: "add/:propertyId",
+              element: <Booking />,
+            },
+            {
+              path: ":bookingId/:propertyId",
+              element: <Booking />,
+            },
+          ],
         },
         {
           path: "404",

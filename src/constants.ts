@@ -7,7 +7,7 @@ export const PROPERTIES_URL = `${BASE_URL}/properties`;
 export const BOOKINGS_URL = `${BASE_URL}/bookings`;
 
 export const DEFAULT_ERROR_MESSAGE =
-  "Something went wrong. Please try again later.";
+  "Something went wrong.";
 
 export const FILTER_OPTIONS = {
   all: "all" as TFilterOptions,

@@ -6,7 +6,7 @@ interface ContentProps {
 
 const Content = ({ children }: ContentProps) => {
   return (
-    <div className="max-w-screen-xl mx-auto p-8 scrollbar-hide dark:text-white">
+    <div className="max-w-screen-xl mx-auto p-8 scrollbar-hide dark:text-white dark:bg-gray-950">
       {children}
     </div>
   );

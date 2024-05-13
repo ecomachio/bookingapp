@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { createSearchParams, useNavigate, useParams } from "react-router-dom";
 import { useErrorBoundary } from "react-error-boundary";
 import useProperty from "../../hooks/useProperty";
 import { toUSD } from "../../utils/currency";
@@ -8,12 +8,11 @@ import { TProperty } from "../../types";
 import { DateRangePicker } from "../../components/DateRangePicker";
 import VerticalSpacing from "../../components/VerticalSpacing";
 import { DateValueType } from "react-tailwindcss-datepicker";
-import { useContext, useMemo } from "react";
+import { useMemo } from "react";
 import { getDaysBetweenDates } from "../../utils/date";
 import Image from "../../components/Image";
 import { Controller, useForm } from "react-hook-form";
-import { AppContext } from "../../context/AppContext";
-import { areIntervalsOverlapping } from "date-fns";
+import { areIntervalsOverlapping, formatDate } from "date-fns";
 
 type Inputs = {
   dateRange: DateValueType;
@@ -31,11 +30,10 @@ const Property = () => {
     setError,
   } = useForm<Inputs>();
 
-  const { addBooking } = useContext(AppContext);
   const { property } = useProperty(Number(id));
 
   const watchDateRange = watch("dateRange");
-
+  console.log("watchDateRange", watchDateRange);
   const daysSelected = useMemo(() => {
     if (
       !watchDateRange ||
@@ -56,15 +54,11 @@ const Property = () => {
   }
 
   const onSubmit = (data: Inputs) => {
-    console.log("submit", data, errors);
-
-    // validate date
     if (!data.dateRange) {
       showBoundary(new Error("Invalid date range"));
       return;
     }
 
-    // validate date range
     if (!data.dateRange.startDate || !data.dateRange.endDate) {
       showBoundary(new Error("Invalid date range"));
       return;
@@ -72,7 +66,6 @@ const Property = () => {
 
     const startDate = new Date(data.dateRange.startDate);
     const endDate = new Date(data.dateRange.endDate);
-    console.log("startDate", startDate);
 
     // check if the selected date range is available
 
@@ -96,16 +89,13 @@ const Property = () => {
       return;
     }
 
-    const bookingId = Math.floor(Math.random() * 1000);
-
-    addBooking({
-      id: bookingId,
-      propertyId: property.id,
-      startDate,
-      endDate,
+    navigate({
+      pathname: `/bookings/add/${property.id}`,
+      search: createSearchParams({
+        start: formatDate(startDate, "yyyy-MM-dd"),
+        end: formatDate(endDate, "yyyy-MM-dd"),
+      }).toString(),
     });
-
-    navigate(`/property/${property.id}/confirmation/${bookingId}`);
   };
 
   return (

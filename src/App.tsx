@@ -15,13 +15,13 @@ import { Suspense } from "react";
 
 function App() {
   return (
-    <div className="dark:bg-gray-950">
+    <div className="dark:bg-gray-950 min-h-dvh">
       <AppProvider>
         <DarkModeProvider>
           <Navigation />
           <Content>
             <ErrorBoundary fallback={<Error />}>
-              <Suspense fallback={<div>Loadadsasdasddsaing...</div>}>
+              <Suspense fallback={<div>Loading...</div>}>
                 <Outlet />
               </Suspense>
             </ErrorBoundary>

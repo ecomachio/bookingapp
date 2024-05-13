@@ -5,10 +5,10 @@ interface ImageProps {
 
 const Image = ({ src, alt }: ImageProps) => {
   return (
-    <div className="bg-white rounded-lg overflow-hidden">
+    <div className="rounded-lg overflow-hidden">
       <div className="relative pb-2/3">
         <img
-          className="absolute h-full w-full object-cover"
+          className="absolute rounded-lg h-full w-full object-cover"
           src={src}
           alt={alt}
         />

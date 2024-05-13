@@ -30,6 +30,7 @@ export function DateRangePicker({
       useRange={!isMobile}
       placeholder={placeholder}
       readOnly
+      dateLooking="forward"
       popoverDirection={isMobile ? "up" : undefined}
       displayFormat={"DD MMMM YYYY"}
     />

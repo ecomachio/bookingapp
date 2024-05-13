@@ -7,6 +7,7 @@ interface AppState {
   properties: TProperty[];
   setProperties: React.Dispatch<React.SetStateAction<TProperty[]>>;
   addBooking: (booking: TBooking) => void;
+  editBooking: (booking: TBooking) => void;
   isLoading?: boolean;
 }
 
@@ -14,6 +15,7 @@ const initialState: AppState = {
   properties: [],
   setProperties: () => {},
   addBooking: () => {},
+  editBooking: () => {},
   isLoading: true,
 };
 
@@ -32,6 +34,32 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
       }
       return property;
     });
+    setProperties(updatedProperties);
+  };
+
+  const editBooking = (booking: TBooking) => {
+    const property = properties.find(
+      (property) => property.id === booking.propertyId
+    );
+
+    if (!property) {
+      throw new Error("Property not found");
+    }
+
+    const current = property.bookedDates.find((b) => b.id === booking.id);
+
+    if (!current) {
+      throw new Error("Booking not found");
+    }
+
+    const updatedBookings = property.bookedDates.map((b) =>
+      b.id === booking.id ? booking : b
+    );
+
+    const updatedProperties = properties.map((p) =>
+      p.id === booking.propertyId ? { ...p, bookedDates: updatedBookings } : p
+    );
+
     setProperties(updatedProperties);
   };
 
@@ -56,7 +84,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AppContext.Provider
-      value={{ properties, setProperties, addBooking, isLoading }}
+      value={{ properties, setProperties, addBooking, editBooking, isLoading }}
     >
       {children}
     </AppContext.Provider>
