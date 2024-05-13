@@ -76,9 +76,9 @@ const Navigation: React.FC = () => {
             Home
           </Navbar.Link>
         </Link>
-        <Navbar.Link>About</Navbar.Link>
-        <Navbar.Link>Services</Navbar.Link>
-        <Navbar.Link>Pricing</Navbar.Link>
+        <Link to="/bookings">
+          <Navbar.Link>My bookings</Navbar.Link>
+        </Link>
         <Navbar.Link>Contact</Navbar.Link>
         <Navbar.Link onClick={toggleDarkMode} className="dark:text-white">
           {darkMode ? <SunIcon /> : <MoonIcon />}
