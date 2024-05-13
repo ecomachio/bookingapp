@@ -76,17 +76,16 @@ const Booking = () => {
       return;
     }
 
-    const bookingId = Math.floor(Math.random() * 1000);
-
     if (mode === "edit") {
       editBooking({
         propertyId: Number(propertyId),
-        id: bookingId,
+        id: Number(bookingId),
         startDate: new Date(data.dateRange.startDate),
         endDate: new Date(data.dateRange.endDate),
       });
       navigate(`/bookings`);
     } else {
+      const bookingId = Math.floor(Math.random() * 1000);
       addBooking({
         propertyId: Number(propertyId),
         id: bookingId,

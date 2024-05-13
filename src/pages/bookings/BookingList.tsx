@@ -33,8 +33,8 @@ const BookingList = () => {
           className="divide-y divide-gray-200 dark:divide-gray-700"
         >
           {allBookings.map((booking) => (
-            <List.Item key={booking.id} className="py-3 sm:py-4">
-              <div className="flex items-center space-x-4">
+            <List.Item key={booking.id} className="py-3 sm:py-4 relative">
+              <div className="flex items-center">
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
                     {booking.property.name}
@@ -42,6 +42,7 @@ const BookingList = () => {
                   <p className="truncate text-sm text-gray-500 dark:text-gray-400">
                     {booking.property.location}
                   </p>
+                  <VerticalSpacing size={2} />
                   <p className="truncate text-sm text-gray-500 dark:text-gray-400">
                     {getDaysBetweenDates(booking.startDate, booking.endDate)}{" "}
                     nights
@@ -58,7 +59,7 @@ const BookingList = () => {
                   </p>
                 </div>
 
-                <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white absolute right-0 top-2">
                   <Link to={`/bookings/${booking.id}/${booking.property.id}`}>
                     <Button
                       role="button"

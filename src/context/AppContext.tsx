@@ -45,9 +45,9 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     if (!property) {
       throw new Error("Property not found");
     }
-
+    console.log("bookingfff", booking);
     const current = property.bookedDates.find((b) => b.id === booking.id);
-
+    console.log("current", current);
     if (!current) {
       throw new Error("Booking not found");
     }
