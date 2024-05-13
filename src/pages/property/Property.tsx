@@ -55,12 +55,18 @@ const Property = () => {
 
   const onSubmit = (data: Inputs) => {
     if (!data.dateRange) {
-      showBoundary(new Error("Invalid date range"));
+      setError("dateRange", {
+        type: "custom",
+        message: "Please select a date range",
+      });
       return;
     }
 
     if (!data.dateRange.startDate || !data.dateRange.endDate) {
-      showBoundary(new Error("Invalid date range"));
+      setError("dateRange", {
+        type: "custom",
+        message: "Please select a date range",
+      });
       return;
     }
 
@@ -80,7 +86,6 @@ const Property = () => {
       );
     });
 
-    console.log("isAvailable", isAvailable);
     if (!isAvailable) {
       setError("dateRange", {
         type: "custom",

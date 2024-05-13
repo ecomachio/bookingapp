@@ -12,7 +12,7 @@ import { formatDate, getDaysBetweenDates } from "../../utils/date";
 import Image from "../../components/Image";
 import { Controller, useForm } from "react-hook-form";
 import { AppContext } from "../../context/AppContext";
-import { add } from "date-fns";
+import { add, areIntervalsOverlapping } from "date-fns";
 import useBooking from "../../hooks/useBooking";
 
 type Inputs = {
@@ -39,6 +39,7 @@ const Booking = () => {
     formState: { errors },
     watch,
     setValue,
+    setError,
   } = useForm<Inputs>();
   console.log("params", propertyId, bookingId, booking);
 
@@ -67,12 +68,40 @@ const Booking = () => {
 
   const onSubmit = (data: Inputs) => {
     if (!data.dateRange) {
-      showBoundary(new Error("Invalid date range"));
+      setError("dateRange", {
+        type: "custom",
+        message: "Please select a date range",
+      });
       return;
     }
 
     if (!data.dateRange.startDate || !data.dateRange.endDate) {
-      showBoundary(new Error("Invalid date range"));
+      setError("dateRange", {
+        type: "custom",
+        message: "Please select a date range",
+      });
+      return;
+    }
+
+    const startDate = new Date(data.dateRange.startDate);
+    const endDate = new Date(data.dateRange.endDate);
+
+    const isAvailable = property.bookedDates.every((booking) => {
+      return !areIntervalsOverlapping(
+        { start: new Date(booking.startDate), end: new Date(booking.endDate) },
+        {
+          start: new Date(startDate),
+          end: new Date(endDate),
+        },
+        { inclusive: true }
+      );
+    });
+
+    if (!isAvailable) {
+      setError("dateRange", {
+        type: "custom",
+        message: "Property is not available for the selected dates",
+      });
       return;
     }
 
