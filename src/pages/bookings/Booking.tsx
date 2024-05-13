@@ -85,16 +85,21 @@ const Booking = () => {
     const startDate = new Date(data.dateRange.startDate);
     const endDate = new Date(data.dateRange.endDate);
 
-    const isAvailable = property.bookedDates.every((booking) => {
-      return !areIntervalsOverlapping(
-        { start: new Date(booking.startDate), end: new Date(booking.endDate) },
-        {
-          start: new Date(startDate),
-          end: new Date(endDate),
-        },
-        { inclusive: true }
-      );
-    });
+    const isAvailable = property.bookedDates
+      .filter((b) => b.id !== Number(bookingId))
+      .every((booking) => {
+        return !areIntervalsOverlapping(
+          {
+            start: new Date(booking.startDate),
+            end: new Date(booking.endDate),
+          },
+          {
+            start: new Date(startDate),
+            end: new Date(endDate),
+          },
+          { inclusive: true }
+        );
+      });
 
     if (!isAvailable) {
       setError("dateRange", {
@@ -244,7 +249,7 @@ const Booking = () => {
             <VerticalSpacing size={4} />
             <div className="flex justify-end gap-4">
               <Button color="blue" pill size="lg" type="submit">
-                Confirm Booking
+                {mode === "edit" ? "Save changes" : "Confirm booking"}
               </Button>
             </div>
           </form>

@@ -8,6 +8,7 @@ interface AppState {
   setProperties: React.Dispatch<React.SetStateAction<TProperty[]>>;
   addBooking: (booking: TBooking) => void;
   editBooking: (booking: TBooking) => void;
+  deleteBooking: (bookingId: number, propertyId: number) => void;
   isLoading?: boolean;
 }
 
@@ -16,6 +17,7 @@ const initialState: AppState = {
   setProperties: () => {},
   addBooking: () => {},
   editBooking: () => {},
+  deleteBooking: () => {},
   isLoading: true,
 };
 
@@ -45,9 +47,9 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     if (!property) {
       throw new Error("Property not found");
     }
-    console.log("bookingfff", booking);
+
     const current = property.bookedDates.find((b) => b.id === booking.id);
-    console.log("current", current);
+
     if (!current) {
       throw new Error("Booking not found");
     }
@@ -63,7 +65,23 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     setProperties(updatedProperties);
   };
 
-  console.log("properties", properties);
+  const deleteBooking = (bookingId: number, propertyId: number) => {
+    const property = properties.find((property) => property.id === propertyId);
+
+    if (!property) {
+      throw new Error("Property not found");
+    }
+
+    const updatedBookings = property.bookedDates.filter(
+      (booking) => booking.id !== bookingId
+    );
+
+    const updatedProperties = properties.map((p) =>
+      p.id === propertyId ? { ...p, bookedDates: updatedBookings } : p
+    );
+
+    setProperties(updatedProperties);
+  };
 
   // load all properties when the app starts
   useEffect(() => {
@@ -71,10 +89,11 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
       try {
         setIsLoading(true);
         const response = await API.get<TPropertyListResponse>(SEED_FILE_URL);
-        console.log("response", response);
+
         setProperties(response.properties);
       } catch (error) {
         console.error("Error fetching properties", error);
+        throw error;
       } finally {
         setIsLoading(false);
       }
@@ -84,7 +103,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AppContext.Provider
-      value={{ properties, setProperties, addBooking, editBooking, isLoading }}
+      value={{ properties, setProperties, addBooking, editBooking, deleteBooking, isLoading }}
     >
       {children}
     </AppContext.Provider>

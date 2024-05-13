@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { Button, Card, List } from "flowbite-react";
 import VerticalSpacing from "../../components/VerticalSpacing";
@@ -9,13 +9,14 @@ import DeleteIcon from "../../components/DeleteIcon";
 import { toUSD } from "../../utils/currency";
 import useBookings from "../../hooks/useBookings";
 import { DeleteBookingModal } from "./modals/DeleteBookingModal";
-import { EditBookingModal } from "./modals/EditBookingModal";
 import { Link, Outlet } from "react-router-dom";
+import { AppContext } from "../../context/AppContext";
 
 const BookingList = () => {
+  const { deleteBooking } = useContext(AppContext);
   const { bookings: allBookings } = useBookings();
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
-  const [openEditModal, setOpenEditModal] = useState(false);
+  const [deleteAction, setDeleteAction] = useState<(() => void) | null>(null);
 
   return (
     <div className="container mx-auto ">
@@ -26,12 +27,21 @@ const BookingList = () => {
         Here you can see all your bookings
       </p>
       <VerticalSpacing size={4} />
-
       <Card className="max-w">
         <List
           unstyled
           className="divide-y divide-gray-200 dark:divide-gray-700"
         >
+          {allBookings.length === 0 && (
+            <List.Item className="flex items-center justify-between py-3 sm:py-4">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                You have no bookings yet
+              </p>
+              <Button color="blue" size="xs" pill className="ml-2" as={Link} to="/">
+                Book now
+              </Button>
+            </List.Item>
+          )}
           {allBookings.map((booking) => (
             <List.Item key={booking.id} className="py-3 sm:py-4 relative">
               <div className="flex items-center">
@@ -77,7 +87,12 @@ const BookingList = () => {
                     size="xs"
                     color="primary"
                     pill
-                    onClick={() => setOpenDeleteModal(true)}
+                    onClick={() => {
+                      setDeleteAction(() => () => {
+                        deleteBooking(booking.id, booking.property.id);
+                      });
+                      setOpenDeleteModal(true);
+                    }}
                   >
                     <DeleteIcon />
                   </Button>
@@ -90,10 +105,12 @@ const BookingList = () => {
       <DeleteBookingModal
         openModal={openDeleteModal}
         setOpenModal={setOpenDeleteModal}
-      />
-      <EditBookingModal
-        openModal={openEditModal}
-        setOpenModal={setOpenEditModal}
+        action={() => {
+          if (deleteAction) {
+            deleteAction();
+          }
+          setOpenDeleteModal(false);
+        }}
       />
       <Outlet />
     </div>

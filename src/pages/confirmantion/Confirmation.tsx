@@ -42,7 +42,7 @@ const Confirmation = () => {
             </div>
           </div>
           <VerticalSpacing size={4} />
-          <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 justify-center">
+          <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 justify-center items-center">
             <Link to="/" className="btn btn-light">
               <Button color="light" pill>
                 Home
