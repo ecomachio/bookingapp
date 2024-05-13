@@ -8,7 +8,7 @@ import "@testing-library/jest-dom/vitest";
 describe("DeleteBookingModal", () => {
   let openModal: boolean = true;
   let setOpenModal = vi.fn();
-  let action = vi.fn();
+  const action = vi.fn();
 
   beforeEach(() => {
     openModal = false;

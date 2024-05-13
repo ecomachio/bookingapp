@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 
 import Error from "./pages/error/Error.tsx";
 import Property from "./pages/property/Property.tsx";
@@ -12,7 +12,7 @@ import { Home } from "./pages/home/index.ts";
 import { Booking, BookingList, Bookings } from "./pages/bookings";
 import Confirmation from "./pages/confirmantion/Confirmation.tsx";
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   [
     {
       path: "/",
