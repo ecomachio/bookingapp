@@ -9,7 +9,7 @@ function createFetchResponse(data: any) {
 }
 
 function createFetchError() {
-  return new Promise((resolve, reject) =>
+  return new Promise((_resolve, reject) =>
     reject(new Error("HTTP error! status: 404"))
   );
 }
