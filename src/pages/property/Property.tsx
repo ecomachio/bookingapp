@@ -1,5 +1,4 @@
 import { createSearchParams, useNavigate, useParams } from "react-router-dom";
-import { useErrorBoundary } from "react-error-boundary";
 import useProperty from "../../hooks/useProperty";
 import { toUSD } from "../../utils/currency";
 import { Button, Card, List } from "flowbite-react";
@@ -20,7 +19,6 @@ type Inputs = {
 
 const Property = () => {
   const { id } = useParams();
-  const { showBoundary } = useErrorBoundary();
   const navigate = useNavigate();
   const {
     control,
@@ -28,6 +26,7 @@ const Property = () => {
     formState: { errors },
     watch,
     setError,
+    clearErrors,
   } = useForm<Inputs>();
 
   const { property } = useProperty(Number(id));
@@ -94,6 +93,8 @@ const Property = () => {
       return;
     }
 
+    console.log("data", data);
+
     navigate({
       pathname: `/bookings/add/${property.id}`,
       search: createSearchParams({
@@ -136,10 +137,22 @@ const Property = () => {
               rules={{ required: true }}
               render={({ field: { onChange, value } }) => {
                 return (
-                  <div className="flex flex-col space-y-2">
+                  <div className="flex flex-col space-y-2 w-full">
                     <DateRangePicker
                       value={value}
-                      setValue={onChange}
+                      setValue={(e) => {
+                        console.log("e", e);
+                        if (e?.startDate && e?.endDate) {
+                          onChange(e);
+                          clearErrors("dateRange");
+                        } else {
+                          setError("dateRange", {
+                            type: "custom",
+                            message: "Please select a date range",
+                          });
+                          onChange(null);
+                        }
+                      }}
                       placeholder="Check-in - Checkout"
                     />
 
@@ -149,13 +162,12 @@ const Property = () => {
                           ? "opacity-100 transform translate-y-0"
                           : "opacity-0 -translate-y-2"
                       }`}
-                    >
-                      {errors.dateRange?.message}
-                    </p>
+                    ></p>
                   </div>
                 );
               }}
             />
+            {errors.dateRange?.message}
             <List
               unstyled
               className="max-w divide-y divide-gray-200 dark:divide-gray-700"

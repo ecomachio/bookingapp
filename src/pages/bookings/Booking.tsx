@@ -1,5 +1,4 @@
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { useErrorBoundary } from "react-error-boundary";
 import useProperty from "../../hooks/useProperty";
 import { toUSD } from "../../utils/currency";
 import { Button, Card, Label, List } from "flowbite-react";
@@ -26,7 +25,6 @@ const Booking = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   console.log("propertyId", propertyId);
-  const { showBoundary } = useErrorBoundary();
   const { property } = useProperty(Number(propertyId));
   const { booking } = useBooking(Number(propertyId), Number(bookingId));
   const [isChangeOpen, setIsChangeOpen] = useState(false);
@@ -40,6 +38,7 @@ const Booking = () => {
     watch,
     setValue,
     setError,
+    clearErrors,
   } = useForm<Inputs>();
   console.log("params", propertyId, bookingId, booking);
 
@@ -125,6 +124,8 @@ const Booking = () => {
     }
   };
 
+  console.log("errors", errors);
+
   return (
     <>
       <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -155,7 +156,7 @@ const Booking = () => {
               <List unstyled>
                 <List.Item>
                   <div className="flex items-center justify-between">
-                    <div>
+                    <div className="flex flex-col space-y-2 w-full">
                       <Label>Dates</Label>
                       {!isChangeOpen ? (
                         <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -172,12 +173,21 @@ const Booking = () => {
                           rules={{ required: true }}
                           render={({ field: { onChange, value } }) => {
                             return (
-                              <div className="flex flex-col space-y-2">
+                              <div className="flex flex-col space-y-2 w-full">
                                 <DateRangePicker
                                   value={value}
                                   setValue={(e) => {
-                                    onChange(e);
-                                    setIsChangeOpen(false);
+                                    console.log("e", e);
+                                    if (e?.startDate && e?.endDate) {
+                                      onChange(e);
+                                      clearErrors("dateRange");
+                                    } else {
+                                      setError("dateRange", {
+                                        type: "custom",
+                                        message: "Please select a date range",
+                                      });
+                                      onChange(null);
+                                    }
                                   }}
                                   placeholder="Check-in - Checkout"
                                 />

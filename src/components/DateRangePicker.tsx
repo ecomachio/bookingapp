@@ -21,10 +21,14 @@ export function DateRangePicker({
     };
   }
 
+  const handleValueChange = (newValue: DateValueType) => {
+    setValue(newValue);
+  };
+
   return (
     <Datepicker
       value={value}
-      onChange={setValue}
+      onChange={handleValueChange}
       showFooter={true}
       separator="until"
       useRange={!isMobile}
