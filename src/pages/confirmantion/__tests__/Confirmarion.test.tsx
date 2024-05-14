@@ -83,7 +83,7 @@ describe("Confirmation", () => {
       </MemoryRouter>
     );
     const dateElement = screen.getByText(
-      /From February 1, 2022 to February 7, 2022/i
+      /From Feb 1 to Feb 7/i
     );
     expect(dateElement).toBeInTheDocument();
   });
