@@ -4,8 +4,8 @@ import { Button, Card, List } from "flowbite-react";
 import VerticalSpacing from "../../components/VerticalSpacing";
 
 import { formatDate, getDaysBetweenDates } from "../../utils/date";
-import EditIcon from "../../components/EditIcon";
-import DeleteIcon from "../../components/DeleteIcon";
+import EditIcon from "../../icons/EditIcon";
+import DeleteIcon from "../../icons/DeleteIcon";
 import { toUSD } from "../../utils/currency";
 import useBookings from "../../hooks/useBookings";
 import { DeleteBookingModal } from "./modals/DeleteBookingModal";

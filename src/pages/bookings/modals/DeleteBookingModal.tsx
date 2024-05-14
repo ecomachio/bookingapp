@@ -1,5 +1,5 @@
 import { Button } from "flowbite-react";
-import DeleteIcon from "../../../components/DeleteIcon";
+import DeleteIcon from "../../../icons/DeleteIcon";
 import { ModalComponent, ModalComponentProps } from "../../../components/Modal";
 
 type DeleteModalProps = Pick<

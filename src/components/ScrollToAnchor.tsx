@@ -14,7 +14,9 @@ function ScrollToAnchor() {
     }
 
     if (lastHash.current && document.getElementById(lastHash.current)) {
+      console.log("ScrollToAnchor", lastHash.current);
       setTimeout(() => {
+        console.log("ScrollToAnchorr timeout", lastHash.current);
         document
           .getElementById(lastHash.current)
           ?.scrollIntoView({ behavior: "smooth", block: "start" });
