@@ -6,9 +6,9 @@ function useFilteredProperties(
   properties: TProperty[],
   selectedFilter: TFilterOptions
 ) {
-  console.log("useFilteredProperties called", properties, selectedFilter);
-  const [filteredProperties, setFilteredProperties] = useState<TProperty[]>(properties);
-  console.log("filteredProperties 2", filteredProperties);
+  const [filteredProperties, setFilteredProperties] =
+    useState<TProperty[]>(properties);
+
   useEffect(() => {
     if (selectedFilter === FILTER_OPTIONS.all)
       setFilteredProperties(properties);
@@ -18,11 +18,7 @@ function useFilteredProperties(
           p.categories.includes(selectedFilter as TCategory)
         )
       );
-
-    console.log("filteredProperties 3", filteredProperties);
-  }, [properties, selectedFilter]);
-
-  console.log("filteredProperties 4 ", filteredProperties.length);
+  }, [filteredProperties, properties, selectedFilter]);
 
   return filteredProperties;
 }

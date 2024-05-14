@@ -6,6 +6,7 @@ export interface ModalComponentProps {
   title: string;
   icon: JSX.Element;
   actions: JSX.Element[];
+  children?: JSX.Element;
 }
 
 export function ModalComponent({
@@ -14,6 +15,7 @@ export function ModalComponent({
   title,
   icon,
   actions,
+  children,
 }: ModalComponentProps) {
   return (
     <>
@@ -26,11 +28,12 @@ export function ModalComponent({
       >
         <Modal.Header />
         <Modal.Body>
-          <div className="text-center">
+          <div className="flex flex-col items-center space-y-4">
             {icon}
-            <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+            <h3 className="mb-5 text-lg font-normal text-center text-gray-500 dark:text-gray-400">
               {title}
             </h3>
+            {children}
             <div className="flex justify-center gap-4">{actions}</div>
           </div>
         </Modal.Body>

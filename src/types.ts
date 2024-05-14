@@ -1,3 +1,5 @@
+import { DateValueType } from "react-tailwindcss-datepicker";
+
 export type TProperty = {
   id: number;
   name: string;
@@ -41,3 +43,9 @@ export type TCategory =
   | "desert"
   | "other";
 export type TFilterOptions = TCategory | "all";
+
+export type Mode = "add" | "edit" | "view";
+
+export type FormInputs = {
+  dateRange: DateValueType;
+};

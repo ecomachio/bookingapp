@@ -16,7 +16,6 @@ const BookingList = () => {
   const { deleteBooking } = useContext(AppContext);
   const { bookings: allBookings } = useBookings();
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
-  const [deleteAction, setDeleteAction] = useState<(() => void) | null>(null);
 
   return (
     <div className="container mx-auto ">
@@ -37,7 +36,14 @@ const BookingList = () => {
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 You have no bookings yet
               </p>
-              <Button color="blue" size="xs" pill className="ml-2" as={Link} to="/">
+              <Button
+                color="blue"
+                size="xs"
+                pill
+                className="ml-2"
+                as={Link}
+                to="/"
+              >
                 Book now
               </Button>
             </List.Item>
@@ -88,30 +94,27 @@ const BookingList = () => {
                     color="primary"
                     pill
                     onClick={() => {
-                      setDeleteAction(() => () => {
-                        deleteBooking(booking.id, booking.property.id);
-                      });
                       setOpenDeleteModal(true);
                     }}
                   >
                     <DeleteIcon />
                   </Button>
+                  <DeleteBookingModal
+                    openModal={openDeleteModal}
+                    setOpenModal={setOpenDeleteModal}
+                    action={() => {
+                      deleteBooking(booking.id, booking.property.id);
+                      setOpenDeleteModal(false);
+                    }}
+                    booking={booking}
+                  />
                 </div>
               </div>
             </List.Item>
           ))}
         </List>
       </Card>
-      <DeleteBookingModal
-        openModal={openDeleteModal}
-        setOpenModal={setOpenDeleteModal}
-        action={() => {
-          if (deleteAction) {
-            deleteAction();
-          }
-          setOpenDeleteModal(false);
-        }}
-      />
+
       <Outlet />
     </div>
   );

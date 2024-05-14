@@ -10,7 +10,7 @@ const useBookings = () => {
       properties.reduce<TBookingWithProperty[]>((acc, property) => {
         const bookings = property.bookedDates.map((booking) => {
           return { ...booking, property: property };
-        }); // add the bookings to the accumulator
+        });
 
         return [...acc, ...bookings];
       }, []),

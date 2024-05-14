@@ -16,9 +16,7 @@ const HomePage = () => {
   const [selectedFilter, setSelectedFilter] = useState<TFilterOptions>(
     FILTER_OPTIONS.all
   );
-
   const { isLoading, properties, error } = useProperties();
-  console.log("HomePage", properties);
   const filteredProperties = useFilteredProperties(properties, selectedFilter);
 
   if (error) {
@@ -26,7 +24,7 @@ const HomePage = () => {
     return null;
   }
   if (isLoading) return <div>Loading...</div>;
-  console.log("filteredProperties", filteredProperties);
+
   return (
     <>
       <ScrollToAnchor />
