@@ -19,14 +19,15 @@ const useProperty = (id: number) => {
           const property = response.properties.find(
             (property) => property.id === id
           );
-          console.log("property", property);
+
           if (!property) {
             throw new Error("Property not found");
           }
 
           setProperty(property);
         } catch (error) {
-          console.error("Error fetching property", error);
+          console.error(error);
+          throw error;
         }
       };
       fetchProperty();

@@ -8,25 +8,27 @@ const useProperties = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<unknown>(null);
 
+  console.log(properties);
+
   useEffect(() => {
     // if properties are already loaded, don't fetch again
-    if (properties.length > 0) return;
+    if (properties.length === 0) {
+      console.log("fetching properties");
+      const fetchProperty = async () => {
+        setIsLoading(true);
 
-    const fetchProperty = async () => {
-      setIsLoading(true);
+        try {
+          const response = await API.get<TPropertyListResponse>();
+          setProperties(response.properties);
+        } catch (error) {
+          setError(error);
+        } finally {
+          setIsLoading(false);
+        }
+      };
 
-      try {
-        const response = await API.get<TPropertyListResponse>();
-        console.log("response", response);
-        setProperties(response.properties);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchProperty();
+      fetchProperty();
+    }
   }, [properties.length, setProperties]);
 
   return { properties, isLoading, error };
