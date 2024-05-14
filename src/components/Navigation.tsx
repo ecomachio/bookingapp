@@ -1,7 +1,7 @@
 import { CustomFlowbiteTheme, Navbar } from "flowbite-react";
 import React, { useContext } from "react";
 import { DarkModeContext } from "../context/DarkModeContext";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const SunIcon = () => (
   <svg
@@ -59,6 +59,7 @@ const customTheme: CustomFlowbiteTheme["navbar"] = {
 
 const Navigation: React.FC = () => {
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
+  const location = useLocation();
 
   return (
     <Navbar theme={customTheme} fluid rounded className="dark:bg-gray-950">
@@ -72,14 +73,15 @@ const Navigation: React.FC = () => {
       <Navbar.Toggle />
       <Navbar.Collapse>
         <Link to="/">
-          <Navbar.Link color="blue" active>
+          <Navbar.Link color="blue" active={location.pathname === "/"}>
             Home
           </Navbar.Link>
         </Link>
         <Link to="/bookings">
-          <Navbar.Link>My bookings</Navbar.Link>
+          <Navbar.Link color="blue" active={location.pathname === "/bookings"}>
+            My bookings
+          </Navbar.Link>
         </Link>
-        <Navbar.Link>Contact</Navbar.Link>
         <Navbar.Link onClick={toggleDarkMode} className="dark:text-white">
           {darkMode ? <SunIcon /> : <MoonIcon />}
         </Navbar.Link>
