@@ -2,6 +2,7 @@ import { CustomFlowbiteTheme, Navbar } from "flowbite-react";
 import React, { useContext } from "react";
 import { DarkModeContext } from "../context/DarkModeContext";
 import { Link, useLocation } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 const SunIcon = () => (
   <svg
@@ -59,10 +60,16 @@ const customTheme: CustomFlowbiteTheme["navbar"] = {
 
 const Navigation: React.FC = () => {
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
+  const isMobile = useMediaQuery({ query: "(max-width: 640px)" });
   const location = useLocation();
 
   return (
-    <Navbar theme={customTheme} fluid rounded className="dark:bg-gray-950">
+    <Navbar
+      theme={customTheme}
+      fluid
+      rounded
+      className="dark:bg-gray-950 fixed w-full z-50"
+    >
       <Link to="/">
         <Navbar.Brand color="blue" href="#">
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
@@ -82,9 +89,17 @@ const Navigation: React.FC = () => {
             My bookings
           </Navbar.Link>
         </Link>
-        <Navbar.Link onClick={toggleDarkMode} className="dark:text-white">
-          {darkMode ? <SunIcon /> : <MoonIcon />}
-        </Navbar.Link>
+        <div className="flex-grow">
+          <Navbar.Brand
+            onClick={toggleDarkMode}
+            className="block py-2 pl-3 pr-4 md:p-0 border-b border-gray-100 text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
+          >
+            <div className="flex items-stretch w-full justify-between">
+              {isMobile ? "Appearance" : null}{" "}
+              {darkMode ? <SunIcon /> : <MoonIcon />}
+            </div>
+          </Navbar.Brand>
+        </div>
       </Navbar.Collapse>
     </Navbar>
   );
