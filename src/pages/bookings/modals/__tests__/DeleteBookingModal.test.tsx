@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { render, fireEvent } from "@testing-library/react";
 
@@ -9,6 +10,18 @@ describe("DeleteBookingModal", () => {
   let openModal: boolean = true;
   let setOpenModal = vi.fn();
   const action = vi.fn();
+  const booking = {
+    id: 1,
+    propertyId: 1,
+    property: {
+      id: 1,
+      name: "Property 1",
+      location: "Location 1",
+      price: 500,
+    },
+    startDate: new Date("2022-01-01"),
+    endDate: new Date("2022-01-10"),
+  } as any;
 
   beforeEach(() => {
     openModal = false;
@@ -18,6 +31,7 @@ describe("DeleteBookingModal", () => {
   it("renders without crashing", () => {
     render(
       <DeleteBookingModal
+        booking={booking}
         openModal={openModal}
         setOpenModal={setOpenModal}
         action={action}
@@ -28,6 +42,7 @@ describe("DeleteBookingModal", () => {
   it("displays the modal title", () => {
     const { getByText } = render(
       <DeleteBookingModal
+        booking={booking}
         openModal={openModal}
         setOpenModal={setOpenModal}
         action={action}
@@ -41,6 +56,7 @@ describe("DeleteBookingModal", () => {
   it('closes the modal when the "Yes, I\'m sure" button is clicked', async () => {
     const { getByText } = render(
       <DeleteBookingModal
+        booking={booking}
         openModal={openModal}
         setOpenModal={setOpenModal}
         action={action}
@@ -55,6 +71,7 @@ describe("DeleteBookingModal", () => {
   it('closes the modal when the "No, cancel" button is clicked', async () => {
     const { getByText } = render(
       <DeleteBookingModal
+        booking={booking}
         openModal={openModal}
         setOpenModal={setOpenModal}
         action={action}
