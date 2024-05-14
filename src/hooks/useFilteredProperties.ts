@@ -10,7 +10,6 @@ function useFilteredProperties(
     useState<TProperty[]>(properties);
 
   useEffect(() => {
-    console.log("useFilteredProperties");
     if (selectedFilter === FILTER_OPTIONS.all)
       setFilteredProperties(properties);
     else

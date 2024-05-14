@@ -23,7 +23,7 @@ describe("DateRangePicker", () => {
       <DateRangePicker value={null} setValue={setValue} />
     );
     const input = getByText(month);
-    console.log("input", input);
+
     fireEvent.click(input);
 
     fireEvent.click(getAllByText("1")[0]);

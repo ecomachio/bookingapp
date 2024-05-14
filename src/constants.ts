@@ -1,13 +1,13 @@
 import { TFilterOptions } from "./types";
-console.log(import.meta.env);
 
 export const BASE_URL = import.meta.env.BASE_URL;
 export const SEED_FILE_URL = `${BASE_URL}seed.json`;
 export const PROPERTIES_URL = `${BASE_URL}/properties`;
 export const BOOKINGS_URL = `${BASE_URL}/bookings`;
 
-export const DEFAULT_ERROR_MESSAGE =
-  "Something went wrong.";
+export const DEFAULT_ERROR_MESSAGE = "Something went wrong.";
+export const DEFAULT_DATE_VALIDATION_MESSAGE =
+  "Please select a valid date range";
 
 export const FILTER_OPTIONS = {
   all: "all" as TFilterOptions,

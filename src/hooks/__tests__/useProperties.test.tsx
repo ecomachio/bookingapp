@@ -23,7 +23,7 @@ describe("useProperties", () => {
 
     renderHook(() => useProperties(), { wrapper });
 
-    expect(API.get).not.toHaveBeenCalled();
+    expect(getSpy).not.toHaveBeenCalled();
   });
 
   it("fetches properties if they are not loaded", async () => {
@@ -43,7 +43,7 @@ describe("useProperties", () => {
       renderHook(() => useProperties(), { wrapper });
     });
 
-    expect(API.get).toHaveBeenCalled();
+    expect(getSpy).toHaveBeenCalled();
     expect(setProperties).toHaveBeenCalledWith(mockProperties);
   });
 

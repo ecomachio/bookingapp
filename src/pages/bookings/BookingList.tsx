@@ -1,3 +1,4 @@
+import { BookingsEmptyState } from "./BookingsEmptyState";
 import { useContext, useState } from "react";
 
 import { Button, Card, List } from "flowbite-react";
@@ -31,23 +32,7 @@ const BookingList = () => {
           unstyled
           className="divide-y divide-gray-200 dark:divide-gray-700"
         >
-          {allBookings.length === 0 && (
-            <List.Item className="flex items-center justify-between py-3 sm:py-4">
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                You have no bookings yet
-              </p>
-              <Button
-                color="blue"
-                size="xs"
-                pill
-                className="ml-2"
-                as={Link}
-                to="/"
-              >
-                Book now
-              </Button>
-            </List.Item>
-          )}
+          {allBookings.length === 0 && <BookingsEmptyState />}
           {allBookings.map((booking) => (
             <List.Item key={booking.id} className="py-3 sm:py-4 relative">
               <div className="flex items-center">

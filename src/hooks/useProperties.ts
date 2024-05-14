@@ -8,12 +8,9 @@ const useProperties = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<unknown>(null);
 
-  console.log(properties);
-
   useEffect(() => {
     // if properties are already loaded, don't fetch again
     if (properties.length === 0) {
-      console.log("fetching properties");
       const fetchProperty = async () => {
         setIsLoading(true);
 

@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import { TBooking, TProperty, TPropertyListResponse } from "../types";
 import { API } from "../services/api";
 import { SEED_FILE_URL } from "../constants";
+import { BookingService } from "../services/bookingService";
 
 interface AppState {
   properties: TProperty[];
@@ -27,63 +28,24 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const addBooking = (booking: TBooking) => {
-    const updatedProperties = properties.map((property) => {
-      if (property.id === booking.propertyId) {
-        return {
-          ...property,
-          bookedDates: [...property.bookedDates, booking],
-        };
-      }
-      return property;
-    });
+    const updatedProperties = BookingService.add(properties, booking);
     setProperties(updatedProperties);
   };
 
   const editBooking = (booking: TBooking) => {
-    const property = properties.find(
-      (property) => property.id === booking.propertyId
-    );
-
-    if (!property) {
-      throw new Error("Property not found");
-    }
-
-    const current = property.bookedDates.find((b) => b.id === booking.id);
-
-    if (!current) {
-      throw new Error("Booking not found");
-    }
-
-    const updatedBookings = property.bookedDates.map((b) =>
-      b.id === booking.id ? booking : b
-    );
-
-    const updatedProperties = properties.map((p) =>
-      p.id === booking.propertyId ? { ...p, bookedDates: updatedBookings } : p
-    );
-
+    const updatedProperties = BookingService.edit(properties, booking);
     setProperties(updatedProperties);
   };
 
   const deleteBooking = (bookingId: number, propertyId: number) => {
-    const property = properties.find((property) => property.id === propertyId);
-
-    if (!property) {
-      throw new Error("Property not found");
-    }
-
-    const updatedBookings = property.bookedDates.filter(
-      (booking) => booking.id !== bookingId
+    const updatedProperties = BookingService.delete(
+      properties,
+      bookingId,
+      propertyId
     );
-
-    const updatedProperties = properties.map((p) =>
-      p.id === propertyId ? { ...p, bookedDates: updatedBookings } : p
-    );
-
     setProperties(updatedProperties);
   };
 
-  // load all properties when the app starts
   useEffect(() => {
     const fetchProperties = async () => {
       try {
@@ -103,7 +65,14 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AppContext.Provider
-      value={{ properties, setProperties, addBooking, editBooking, deleteBooking, isLoading }}
+      value={{
+        properties,
+        setProperties,
+        addBooking,
+        editBooking,
+        deleteBooking,
+        isLoading,
+      }}
     >
       {children}
     </AppContext.Provider>
