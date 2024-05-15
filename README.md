@@ -123,6 +123,8 @@ Currently, the services are just returning the data from the local json file.
 The app has been tested with [vitest](https://vitest.dev/) and [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/). To run
 the tests, use the following command:
 
+You should see the following output: it has one flake test. (see [improvents](#improvents))
+
 ```sh
 bun test:ui
 ```
@@ -133,8 +135,6 @@ bun test:ui
 
 The app is deployed GitHub Pages. it its deployed automatically when a new commit is pushed to the main branch.
 ⚠️ Github pages is not adequate for a single page application. it doesn't support client-side routing. (see [improvents](#improvents))
-
-You should see the following output: it has one flake test. (see [improvents](#improvents))
 
 ## Improvements
 
