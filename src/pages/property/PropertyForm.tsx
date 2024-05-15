@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { getDaysBetweenDates } from "../../utils/date";
+import { getDaysBetweenDates, toDate } from "../../utils/date";
 import { DateValueType } from "react-tailwindcss-datepicker";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import { formatDate } from "date-fns";
@@ -40,8 +40,8 @@ const PropertyForm = ({ property }: PropertyFormProps) => {
       return 0;
     }
 
-    const start = new Date(watchDateRange.startDate);
-    const end = new Date(watchDateRange.endDate);
+    const start = toDate(watchDateRange.startDate);
+    const end = toDate(watchDateRange.endDate);
 
     return getDaysBetweenDates(start, end);
   }, [watchDateRange]);
@@ -87,8 +87,8 @@ const PropertyForm = ({ property }: PropertyFormProps) => {
       return;
     }
 
-    const startDate = new Date(data.dateRange.startDate);
-    const endDate = new Date(data.dateRange.endDate);
+    const startDate = toDate(data.dateRange.startDate);
+    const endDate = toDate(data.dateRange.endDate);
 
     navigate({
       pathname: `/bookings/add/${property.id}`,
