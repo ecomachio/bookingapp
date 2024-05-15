@@ -15,6 +15,7 @@ This is a booking application built with React, TypeScript, Vite and Bun. you ca
 - [Usage](#usage)
 - [Architecture](#architecture)
 - [Tests](#tests)
+- [Deployment](#deployment)
 - [Improvements](#improvements)
 
 ## Features
