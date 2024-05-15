@@ -127,14 +127,14 @@ the tests, use the following command:
 bun test:ui
 ```
 
+![tests](./public/tests.png)
+
 ## Deployment
 
 The app is deployed GitHub Pages. it its deployed automatically when a new commit is pushed to the main branch.
 ⚠️ Github pages is not adequate for a single page application. it doesn't support client-side routing. (see [improvents](#improvents))
 
 You should see the following output: it has one flake test. (see [improvents](#improvents))
-
-![tests](./public/tests.png)
 
 ## Improvements
 
