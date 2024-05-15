@@ -31,9 +31,11 @@ This is a booking application built with React, TypeScript, Vite and Bun. you ca
 - [Bun](https://bun.sh/)
 
 Install Bun with the following command: (you can also install it from the [official website](https://bun.sh/)
+
 ```sh
 curl -fsSL https://bun.sh/install | bash
 ```
+
 if you are using windows, please check the [official website](https://bun.sh/)
 
 ## Installation
@@ -96,23 +98,24 @@ The app is built with a component-based architecture. Each component is responsi
 The app uses a global state management system with [React Context](https://reactjs.org/docs/context.html). it loads a list of properties from a local json file.
 all state is in memory and not persisted.
 
-The routes are managed with [React Router v6](https://reactrouter.com/). 
-  Route structure:
-  - `/`: Home page.
-  - `/property/:id`: Property page. It is used to start the booking process.
-  - `/bookings`: Bookings List page.
-    - `/:propertyId/confirmation/:bookingId/",`: Booking confirmation page.
-    - `add/:propertyId`: Confirm booking page.
-    - `:bookingId/:propertyId`: Edit booking page.
-  - `/404`: Error page.
-  - `*`: Error page. (fallback route)
+The routes are managed with [React Router v6](https://reactrouter.com/).
+Route structure:
+
+- `/`: Home page.
+- `/property/:id`: Property page. It is used to start the booking process.
+- `/bookings`: Bookings List page.
+  - `/:propertyId/confirmation/:bookingId/",`: Booking confirmation page.
+  - `add/:propertyId`: Confirm booking page.
+  - `:bookingId/:propertyId`: Edit booking page.
+- `/404`: Error page.
+- `*`: Error page. (fallback route)
 
 `hooks` are mostly used for extract logic from components.
 
 `services` are meant to be used as a layer between the components and the data source. in this case, the data source is a local json file. the services are not used in this app. they are meant to be used in a real-world application where data is fetched from an API.
 Currently, the services are just returning the data from the local json file.
 
-⚠️ `services` are also holding domain business logic. this should be moved to a domain folder in a real-world application where all the business logic is decouple from UI logic. 
+⚠️ `services` are also holding domain business logic. this should be moved to a domain folder in a real-world application where all the business logic is decouple from UI logic.
 
 ## Tests
 
@@ -123,22 +126,27 @@ the tests, use the following command:
 bun test:ui
 ```
 
+## Deployment
+
+The app is deployed GitHub Pages. it its deployed automatically when a new commit is pushed to the main branch.
+⚠️ Github pages is not adequate for a single page application. it doesn't support client-side routing. (see [improvents](#improvents))
+
 You should see the following output: it has one flake test. (see [improvents](#improvents))
 
 ![tests](./public/tests.png)
 
 ## Improvements
 
-* [ ] only allow future dates to be selected.
-* [ ] add JSDocs to all functions.
-* [ ] prevent not available dates from being selected.
-* [ ] use local storage to persist bookings and appearance mode.
-* [ ] add a loading state to the application. Currently loads just a simple loading text.
-* [ ] Improve component library to make the typography and spacing more consistent.
-* [ ] add more tests to all components.
-* [ ] fix one flake test. this particular test is flakey because it only fails when the test is run with all the tests. when run alone, it passes. I didn't have time to fix it.
+- [ ] only allow future dates to be selected.
+- [ ] add JSDocs to all functions.
+- [ ] prevent not available dates from being selected.
+- [ ] use local storage to persist bookings and appearance mode.
+- [ ] add a loading state to the application. Currently loads just a simple loading text.
+- [ ] Improve component library to make the typography and spacing more consistent.
+- [ ] add more tests to all components.
+- [ ] fix one flake test. this particular test is flakey because it only fails when the test is run with all the tests. when run alone, it passes. I didn't have time to fix it.
+- [ ] deploy to a platform that supports client-side routing. (Vercel, Netlify, etc.)
 
 ## Contact
+
 LinkedIn: [Edian Comachio](https://www.linkedin.com/in/edian-comachio)
-
-
