@@ -76,7 +76,7 @@ You can now view the app in your browser at [http://localhost:5173](http://local
   - `hooks/`: custom hooks.
   - `icons/`: SVG icons.
   - `pages/`: pages of the application.
-  - `services/`: services for fetching data and domain logic. (see [improvents](#improvents))
+  - `services/`: services for fetching data and domain logic. (see [Improvements](#improvements))
   - `utils/`: Contains utility functions.
   - `types.ts`: types used across the application.
   - `constants.ts`: constants used across the application.
@@ -123,7 +123,7 @@ Currently, the services are just returning the data from the local json file.
 The app has been tested with [vitest](https://vitest.dev/) and [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/). To run
 the tests, use the following command:
 
-You should see the following output: it has one flake test. (see [improvents](#improvents))
+You should see the following output: it has one flake test. (see [Improvements](#improvements))
 
 ```sh
 bun test:ui
@@ -134,7 +134,7 @@ bun test:ui
 ## Deployment
 
 The app is deployed GitHub Pages. it its deployed automatically when a new commit is pushed to the main branch.
-⚠️ Github pages is not adequate for a single page application. it doesn't support client-side routing. (see [improvents](#improvents))
+⚠️ Github pages is not adequate for a single page application. it doesn't support client-side routing. (see [Improvements](#improvements))
 
 ## Improvements
 
