@@ -20,18 +20,18 @@ This is a booking application built with React, TypeScript, Vite and Bun. you ca
 
 ## Features
 
-- Here you can see several properties.
-- You can add, edit, and delete bookings.
-- You can filter bookings by category.
+- A list with several properties.
+- Add, edit, and delete bookings.
+- Filter bookings by category.
 - You see all your bookings in a list.
-- you can change the appearance of the app by switching between light and dark mode.
+- Change the appearance of the app by switching between light and dark mode.
 - Mobile responsive design.
 
 ## Prerequisites
 
 - [Bun](https://bun.sh/)
 
-Install Bun with the following command: (you can also install it from the [official website](https://bun.sh/)
+Install Bun with the following command: (you can also install it from the [official website](https://bun.sh/))
 
 ```sh
 curl -fsSL https://bun.sh/install | bash
@@ -96,8 +96,9 @@ To use the Booking App, follow these steps:
 
 The app is built with a component-based architecture. Each component is responsible for a specific part of the UI. The components are reusable The components are styled with [Tailwind CSS](https://tailwindcss.com/) and [flowbite](https://flowbite.com/)
 
-The app uses a global state management system with [React Context](https://reactjs.org/docs/context.html). it loads a list of properties from a local json file.
-all state is in memory and not persisted.
+The app uses a global state management system with [React Context](https://reactjs.org/docs/context.html). it loads a list of properties from a local json file. all state is in memory and not persisted. 
+
+In a real application, a state management library like Redux or Zustand should be used to manage the state. As the application grows, it becomes harder to manage the state with React Context. (see [Improvements](#improvements))
 
 The routes are managed with [React Router v6](https://reactrouter.com/).
 Route structure:
@@ -138,6 +139,7 @@ The app is deployed GitHub Pages. it its deployed automatically when a new commi
 
 ## Improvements
 
+- [ ] Use a state management library like Redux or Zustand to manage the global state.
 - [ ] only allow future dates to be selected.
 - [ ] add JSDocs to all functions.
 - [ ] prevent not available dates from being selected.
